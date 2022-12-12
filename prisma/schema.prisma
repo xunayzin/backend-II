@@ -7,15 +7,20 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Games {
+model Movies {
   id     String @id @default(uuid())
   number Int    @unique
   title  String @unique
+  score  Int    @map("imb_score")
+  year   Int
+  genre  String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  @@map("games")
+  profiles Profile[]
+
+  @@map("movies")
 }
 
 model User {
@@ -24,10 +29,12 @@ model User {
   CPF      String  @unique
   name     String
   password String
-  isAdmin  Boolean
+  isAdmin  Boolean @default(false) @map("is_admin")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  profile Profile[]
 
   @@map("user")
 }
@@ -35,10 +42,14 @@ model User {
 model Profile {
   id       String @id @default(uuid())
   title    String @unique
-  imageURL String
+  imageURL String @map("image_url")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
+
+  favorites Movies[]
+  user      User    @relation(fields: [userId], references: [id])
+  userId    String
 
   @@map("profile")
 }

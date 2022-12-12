@@ -10,6 +10,7 @@ export class CreateProfileDto {
   title: string;
 
   @IsUrl()
+  @IsString()
   @ApiProperty({
     description: 'Imagem a ser utilizada',
     example:

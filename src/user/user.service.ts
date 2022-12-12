@@ -17,7 +17,6 @@ export class UserService {
     email: true,
     name: true,
     password: false,
-    isAdmin: true,
     CPF: false,
     createdAt: true,
     updatedAt: true,

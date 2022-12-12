@@ -13,7 +13,7 @@ async function bootstrap() {
     .setDescription('Api')
     .setVersion('1.0.0')
     .addTag('status')
-    .addTag('games')
+    .addTag('movies')
     .addTag('user')
     .addTag('profile')
     .addTag('auth')
